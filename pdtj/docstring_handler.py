@@ -9,11 +9,11 @@ def process_args(object_to_get):
     dict_args = {}
     for index, args in enumerate(reversed(spec.args)):
         if args != 'self':
-            dict_args[args] = {'type': spec.annotations[args]}
+            dict_args[args + ":"] = {'type': spec.annotations[args]}
             if index < len(spec.defaults):
-                dict_args[args]['default'] = defaults[index]
+                dict_args[args + ":"]['default'] = defaults[index]
             else:
-                dict_args[args]['default'] = None
+                dict_args[args + ":"]['default'] = None
 
     return dict_args
 
@@ -40,13 +40,14 @@ def split_docstring_by_elements(text, elements_position):
     result = {}
 
     for index, position in enumerate(elements_list):
+        element = elements_position[position]
         if index == 0:
-            result[elements_position[position]] = (text[:elements_list[index + 1]])
+            result[element.replace(":", "").lower()] = (text[:elements_list[index + 1]].replace(element, ""))
 
         elif index == last_element:
-            result[elements_position[position]] = (text[elements_list[index]:])
+            result[element.replace(":", "").lower()] = (text[elements_list[index]:].replace(element, ""))
 
         else:
-            result[elements_position[position]] = (text[position:elements_list[index + 1]])
+            result[element.replace(":", "").lower()] = (text[position:elements_list[index + 1]].replace(element, ""))
 
     return result
