@@ -5,7 +5,8 @@ from pdtj.constants import DOCSTRING_ELEMENTS
 
 def process_args(object_to_get):
     spec = inspect.getfullargspec(object_to_get)
-    defaults = list(reversed(spec.defaults))
+    defaults = spec.defaults
+    defaults = list(reversed(defaults)) if defaults is not None else []
     dict_args = {}
     for index, args in enumerate(reversed(spec.args)):
         if args != 'self':
@@ -16,6 +17,14 @@ def process_args(object_to_get):
                 dict_args[args + ":"]['default'] = None
 
     return dict_args
+
+
+def update_args(pre_processed_dict, args_pre_processed_dict):
+    args_pre_processed_dict.pop('introduction')
+
+    pre_processed_dict['args'] = args_pre_processed_dict
+
+    return pre_processed_dict
 
 
 def get_elements_position(text: str, docstring_elements=DOCSTRING_ELEMENTS):
