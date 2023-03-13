@@ -15,16 +15,16 @@ def list_directory(path):
 def files_parser(path, upper_file, current_dictionary):
     update_dictionary = {upper_file: {"type": get_directory_type(path)}}
 
-    current_directory_files_list = list_directory(path)
-    for directory in current_directory_files_list:
+    files_in_directory = list_directory(path)
+    for file_name in files_in_directory:
 
-        current_path = f'{os.path.join(path, directory)}'
-        directory_type = get_directory_type(current_path)
-        if directory_type == 'directory':
-            current_dictionary[upper_file][directory] = (files_parser(current_path, directory, current_dictionary))
+        current_path = f'{os.path.join(path, file_name)}'
+        file_type = get_directory_type(current_path)
+        if file_type == 'directory':
+            current_dictionary[upper_file][file_name] = (files_parser(current_path, file_name, current_dictionary))
 
-        else:
-            update_dictionary[upper_file][directory] = {"type": get_directory_type(current_path)}
+        elif file_type == 'python file':
+            update_dictionary[upper_file][file_name] = {"type": file_type}
 
     current_dictionary.update(update_dictionary)
     return current_dictionary
