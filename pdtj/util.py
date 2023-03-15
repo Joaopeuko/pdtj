@@ -1,8 +1,8 @@
 import os
 
 
-def check_dir_existence(path, folder_name):
-    return os.path.exists(os.path.join(path, folder_name))
+def check_dir_existence(path, file_name):
+    return os.path.exists(os.path.join(path, file_name))
 
 
 def create_single_dir(path, folder_name):
