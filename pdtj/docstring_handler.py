@@ -1,4 +1,5 @@
 import inspect
+import importlib.util
 
 from pdtj.constants import DOCSTRING_ELEMENTS
 
@@ -15,7 +16,7 @@ def process_args(object_to_get):
                 if index < len(defaults):
                     dict_args[args + ":"]['default'] = defaults[index]
                 else:
-                    dict_args[args + ":"]['default'] = None
+                    dict_args[args + ":"]['default'] = 'No default argument'
 
     return dict_args
 
@@ -68,8 +69,6 @@ def split_docstring_by_elements(text, elements_position):
         for element in elements_position.values():
             result[element.replace(":", "").lower()] = text
 
-
-
     return result
 
 
@@ -103,3 +102,25 @@ def parse_object(object_to_parse):
         result = update_args(result, result_args, args_dict)
 
     return result
+
+
+def docstring_file_parser(file):
+    try:
+        mod = importlib.import_module(f"{file.replace('.py', '')}", package=None)
+        members = inspect.getmembers(mod, predicate=lambda x: inspect.isclass(x) or inspect.isfunction(x))
+        member_dict = dict(members)
+
+        dict_result = {}
+        for key in member_dict:
+            dict_result[key] = parse_object(member_dict[key])
+
+            if inspect.isclass(member_dict[key]):
+                class_members = inspect.getmembers(member_dict[key], predicate=inspect.isfunction)
+                class_members_dict = dict(class_members)
+                for class_key in class_members_dict:
+                    dict_result[key][class_key] = parse_object(class_members_dict[class_key])
+
+        return dict_result
+    except FileNotFoundError:
+        # TODO this part still missing, work needed.
+        return {}
