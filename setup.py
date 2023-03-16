@@ -19,4 +19,10 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
     install_requires=[requirement for requirement in requirements],
+    entry_points={
+        "console_scripts": [
+            "pdtj = pdtj.json_generator:main",  # command = in order, the path, file and function to run
+
+        ]
+    },
 )
