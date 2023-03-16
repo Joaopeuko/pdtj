@@ -21,8 +21,7 @@ setuptools.setup(
     install_requires=[requirement for requirement in requirements],
     entry_points={
         "console_scripts": [
-            "pdtj = pdtj.json_generator:main",  # command = in order, the path, file and function to run
-
+            "pdtj = pdtj.json_generator:main",
         ]
     },
 )
