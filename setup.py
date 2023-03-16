@@ -1,6 +1,8 @@
 import pathlib
 import setuptools
 
+import __version__
+
 long_description = (pathlib.Path(__file__).parent / "README.md").read_text()
 
 with open("requirements.txt", "r") as requirements_file:
@@ -8,7 +10,7 @@ with open("requirements.txt", "r") as requirements_file:
 
 setuptools.setup(
     name='pdtj',
-    version='0.0.1',
+    version=__version__.version,
     license='MIT',
     author="Joao Paulo Euko",
     url='https://github.com/Joaopeuko/pdtj',
