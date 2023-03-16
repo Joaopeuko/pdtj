@@ -27,7 +27,7 @@ def main():
     upper_file = root
     file_parser_result = files_parser(path, upper_file, directory_dict)
 
-    path = os.path.join(os.getcwd(), '../docs')
-    path = os.path.join(path, '')
+    path = os.path.join(os.getcwd(), 'docs')
+    path = os.path.join(path, 'pdtj')
     with open(os.path.join(path, f'{__version__.version}.json'), 'w') as file:
         file.write(str(file_parser_result))
