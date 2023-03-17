@@ -1,5 +1,5 @@
-import inspect
 import importlib.util
+import inspect
 
 from pdtj.constants import GOOGLE_DOCSTRING_ELEMENTS
 
@@ -10,25 +10,25 @@ def process_args(object_to_get):
     defaults = list(reversed(defaults)) if defaults is not None else []
     dict_args = {}
     for index, args in enumerate(reversed(spec.args)):
-        if args != 'self':
+        if args != "self":
             if args in spec.annotations.keys():
-                dict_args[args + ":"] = {'type': spec.annotations[args]}
+                dict_args[args + ":"] = {"type": spec.annotations[args]}
                 if index < len(defaults):
-                    dict_args[args + ":"]['default'] = defaults[index]
+                    dict_args[args + ":"]["default"] = defaults[index]
                 else:
-                    dict_args[args + ":"]['default'] = 'No default argument'
+                    dict_args[args + ":"]["default"] = "No default argument"
 
     return dict_args
 
 
 def update_args(pre_processed_dict, args_pre_processed_dict, arg_dict):
-    args_pre_processed_dict.pop('introduction')
+    args_pre_processed_dict.pop("introduction")
 
     for arg in args_pre_processed_dict.keys():
-        args_pre_processed_dict[arg] = {'description': args_pre_processed_dict[arg]}
-        args_pre_processed_dict[arg].update(arg_dict[arg + ':'])
+        args_pre_processed_dict[arg] = {"description": args_pre_processed_dict[arg]}
+        args_pre_processed_dict[arg].update(arg_dict[arg + ":"])
 
-    pre_processed_dict['args'] = args_pre_processed_dict
+    pre_processed_dict["args"] = args_pre_processed_dict
 
     return pre_processed_dict
 
@@ -37,7 +37,7 @@ def get_elements_position(text: str, docstring_elements=GOOGLE_DOCSTRING_ELEMENT
     elements_position_index = []
 
     # docstring_elements = GOOGLE_DOCSTRING_ELEMENTS + args
-    element_position = {0: 'introduction'}
+    element_position = {0: "introduction"}
     for element in docstring_elements:
         position = text.find(element)
 
@@ -45,7 +45,9 @@ def get_elements_position(text: str, docstring_elements=GOOGLE_DOCSTRING_ELEMENT
             element_position[position] = element
             elements_position_index.append(position)
 
-    return {key: element_position[key] for key in sorted(element_position)}  # sorted(elements_position_index)
+    return {
+        key: element_position[key] for key in sorted(element_position)
+    }  # sorted(elements_position_index)
 
 
 def split_docstring_by_elements(text, elements_position):
@@ -56,14 +58,19 @@ def split_docstring_by_elements(text, elements_position):
         for index, position in enumerate(elements_list):
             element = elements_position[position]
             if index == 0:
-                result[element.replace(":", "").lower()] = (text[:elements_list[index + 1]].replace(element, ""))
+                result[element.replace(":", "").lower()] = text[
+                    : elements_list[index + 1]
+                ].replace(element, "")
 
             elif index == last_element:
-                result[element.replace(":", "").lower()] = (text[elements_list[index]:].replace(element, ""))
+                result[element.replace(":", "").lower()] = text[
+                    elements_list[index] :
+                ].replace(element, "")
 
             else:
-                result[element.replace(":", "").lower()] = (
-                    text[position:elements_list[index + 1]].replace(element, ""))
+                result[element.replace(":", "").lower()] = text[
+                    position : elements_list[index + 1]
+                ].replace(element, "")
 
     elif len(elements_position) == 1:
         for element in elements_position.values():
@@ -96,9 +103,9 @@ def parse_object(object_to_parse):
     elements_position = get_elements_position(raw_text_clean)
     result = split_docstring_by_elements(raw_text_clean, elements_position)
 
-    if 'args' in result.keys():
-        elements_position = get_elements_position(result['args'], args_dict.keys())
-        result_args = split_docstring_by_elements(result['args'], elements_position)
+    if "args" in result.keys():
+        elements_position = get_elements_position(result["args"], args_dict.keys())
+        result_args = split_docstring_by_elements(result["args"], elements_position)
         result = update_args(result, result_args, args_dict)
 
     return result
@@ -107,7 +114,9 @@ def parse_object(object_to_parse):
 def docstring_file_parser(file):
     try:
         mod = importlib.import_module(f"{file.replace('.py', '')}", package=None)
-        members = inspect.getmembers(mod, predicate=lambda x: inspect.isclass(x) or inspect.isfunction(x))
+        members = inspect.getmembers(
+            mod, predicate=lambda x: inspect.isclass(x) or inspect.isfunction(x)
+        )
         member_dict = dict(members)
 
         dict_result = {}
@@ -115,10 +124,14 @@ def docstring_file_parser(file):
             dict_result[key] = parse_object(member_dict[key])
 
             if inspect.isclass(member_dict[key]):
-                class_members = inspect.getmembers(member_dict[key], predicate=inspect.isfunction)
+                class_members = inspect.getmembers(
+                    member_dict[key], predicate=inspect.isfunction
+                )
                 class_members_dict = dict(class_members)
                 for class_key in class_members_dict:
-                    dict_result[key][class_key] = parse_object(class_members_dict[class_key])
+                    dict_result[key][class_key] = parse_object(
+                        class_members_dict[class_key]
+                    )
 
         return dict_result
     except FileNotFoundError:

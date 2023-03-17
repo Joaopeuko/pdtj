@@ -17,8 +17,7 @@ def create_docs_and_pdtj_dir():
 
     """
     current_path = os.getcwd()
-    for folder_name in ['docs', 'pdtj']:
-
+    for folder_name in ["docs", "pdtj"]:
         if not check_dir_existence(current_path, folder_name):
             create_single_dir(current_path, folder_name)
 

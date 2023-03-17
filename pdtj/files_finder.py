@@ -2,12 +2,23 @@ import os
 
 from pdtj.docstring_handler import docstring_file_parser
 
-REMOVE_ITEMS = ['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__',
-                '__spec__', '__init__', '__pycache__', '__init__.py']
+REMOVE_ITEMS = [
+    "__builtins__",
+    "__cached__",
+    "__doc__",
+    "__file__",
+    "__loader__",
+    "__name__",
+    "__package__",
+    "__spec__",
+    "__init__",
+    "__pycache__",
+    "__init__.py",
+]
 
 
 def get_directory_type(possible_directory):
-    return 'directory' if os.path.isdir(possible_directory) else 'file'
+    return "directory" if os.path.isdir(possible_directory) else "file"
 
 
 def list_directory(path):
@@ -15,7 +26,7 @@ def list_directory(path):
 
 
 def loop_over_current_dictionary(module_path, result):
-    module_list = module_path.split('.')
+    module_list = module_path.split(".")
     open_dictionary = {}
     for index, module in enumerate(reversed(module_list)):
         if index == 0:
@@ -34,18 +45,19 @@ def files_parser(path, upper_file, current_dictionary):
 
     files_in_directory = list_directory(path)
     for file_name in files_in_directory:
-
-        current_path = f'{os.path.join(path, file_name)}'
-        module_path = current_path.replace('./', '').replace('\\', '.').replace('/', '.')
+        current_path = f"{os.path.join(path, file_name)}"
+        module_path = (
+            current_path.replace("./", "").replace("\\", ".").replace("/", ".")
+        )
 
         file_type = get_directory_type(current_path)
-        if file_type == 'directory':
+        if file_type == "directory":
             result = files_parser(current_path, file_name, current_dictionary)
             current_dictionary = loop_over_current_dictionary(module_path, result)
 
-        elif file_type == 'file':
+        elif file_type == "file":
             if file_name.endswith(".py"):
-                python_type = 'python file'
+                python_type = "python file"
                 docstring_dict = docstring_file_parser(module_path)
 
                 update_dictionary[upper_file][file_name] = {"type": python_type}

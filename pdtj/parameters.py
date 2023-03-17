@@ -8,4 +8,3 @@ try:
 
 except FileNotFoundError:
     parameters = None
-
