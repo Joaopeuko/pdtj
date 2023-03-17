@@ -7,10 +7,11 @@ name = "pypi"
 pyyaml = "*"
 
 [dev-packages]
+black = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.8"
-
 
 [scripts]
 self_install = "pip install -e ."
