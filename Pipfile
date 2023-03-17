@@ -14,4 +14,3 @@ python_version = "3.8"
 
 [scripts]
 self_install = "pip install -e ."
-update_requirements = "pipenv lock -r > requirements.txt"
