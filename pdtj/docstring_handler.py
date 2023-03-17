@@ -1,7 +1,7 @@
 import inspect
 import importlib.util
 
-from pdtj.constants import DOCSTRING_ELEMENTS
+from pdtj.constants import GOOGLE_DOCSTRING_ELEMENTS
 
 
 def process_args(object_to_get):
@@ -33,10 +33,10 @@ def update_args(pre_processed_dict, args_pre_processed_dict, arg_dict):
     return pre_processed_dict
 
 
-def get_elements_position(text: str, docstring_elements=DOCSTRING_ELEMENTS):
+def get_elements_position(text: str, docstring_elements=GOOGLE_DOCSTRING_ELEMENTS):
     elements_position_index = []
 
-    # docstring_elements = DOCSTRING_ELEMENTS + args
+    # docstring_elements = GOOGLE_DOCSTRING_ELEMENTS + args
     element_position = {0: 'introduction'}
     for element in docstring_elements:
         position = text.find(element)

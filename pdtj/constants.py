@@ -1,2 +1,2 @@
 
-DOCSTRING_ELEMENTS = ['Args:', 'Attributes:', 'Examples:', 'Raises:', 'Returns:', 'Yields:']
+GOOGLE_DOCSTRING_ELEMENTS = ['Args:', 'Attributes:', 'Examples:', 'Raises:', 'Returns:', 'Yields:']
