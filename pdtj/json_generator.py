@@ -1,7 +1,7 @@
 import argparse
 import os
 
-import __version__
+from pdtj import __version__
 from pdtj.files_finder import files_parser
 from pdtj.files_finder import get_directory_type
 from pdtj.parameters import parameters
