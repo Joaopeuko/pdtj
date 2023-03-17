@@ -9,6 +9,7 @@ pyyaml = "*"
 [dev-packages]
 black = "*"
 pre-commit = "*"
+commitizen = "*"
 
 [requires]
 python_version = "3.8"
