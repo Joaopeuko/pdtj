@@ -4,7 +4,7 @@ import pathlib
 
 import setuptools
 
-import __version__
+from pdtj import __version__
 
 long_description = (pathlib.Path(__file__).parent / "README.md").read_text()
 
