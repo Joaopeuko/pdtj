@@ -1,0 +1,6 @@
+- id: pdtj
+  name: pdtj
+  description: "pdtj: Python docstring to Json file"
+  entry: pdtj
+  language: python
+  types_or: [python]
