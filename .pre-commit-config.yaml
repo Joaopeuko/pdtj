@@ -40,12 +40,3 @@ repos:
   hooks:
   - id: commitizen
     stages: [commit-msg]
-
-- repo: local
-  hooks:
-  -   id: commitizen
-      name: commitizen-bump-changelog
-      entry: pipenv run cz bump --changelog
-      language: system
-      stages:
-        - push
