@@ -43,14 +43,14 @@ repos:
 
 - repo: local
   hooks:
-  -   id: commitizen-bump
+  -   id: commitizen
       name: commitizen-bump
       entry: cz bump --files-only
       language: system
       stages:
         - push
 
-  - id: commitizen-changelog
+  - id: commitizen
     name: commitizen-changelog
     entry: cz changelog
     language: system
