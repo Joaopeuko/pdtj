@@ -1,0 +1,8 @@
+---
+commitizen:
+  name: cz_conventional_commits
+  tag_format: v0.0.2
+  version: 0.0.3
+  version_files:
+  - pdtj/__version__.py
+  - setup.py
