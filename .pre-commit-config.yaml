@@ -40,3 +40,19 @@ repos:
   hooks:
   - id: commitizen
     stages: [commit-msg]
+
+- repo: local
+  hooks:
+  -   id: commitizen-bump
+      name: commitizen-bump
+      entry: cz bump --files-only
+      language: system
+      stages:
+        - push
+
+  - id: commitizen-changelog
+    name: commitizen-changelog
+    entry: cz changelog
+    language: system
+    stages:
+      - push
