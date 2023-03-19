@@ -9,14 +9,9 @@ from pdtj import __version__
 long_description = (pathlib.Path(__file__).parent / "README.md").read_text()
 
 
-# with open("requirements.txt", "r") as requirements_file:
-#     requirements = requirements_file.readlines()
-#
 def get_requirements_from_pipfile_lock(pipfile_lock=None):
     if pipfile_lock is None:
-        pipfile_lock = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), "Pipfile.lock"
-        )
+        pipfile_lock = os.path.join(os.path.dirname(os.path.realpath(__file__)), "Pipfile.lock")
     lock_data = json.load(open(pipfile_lock))
     retval = []
     for package_name, package_data in lock_data.get("default", {}).items():
@@ -47,7 +42,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
-    install_requires=requirements,  # [requirement for requirement in requirements]
+    install_requires=requirements,
     entry_points={
         "console_scripts": [
             "pdtj = pdtj.json_generator:main",
