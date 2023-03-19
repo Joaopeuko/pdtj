@@ -29,6 +29,11 @@ repos:
       files: ^src/
       args: []
 
+- repo: https://github.com/Joaopeuko/pdtj
+  rev: v0.0.2
+  hooks:
+  - id: pdtj
+
 - repo: https://github.com/psf/black
   rev: 23.1.0
   hooks:
