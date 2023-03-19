@@ -1,3 +1,13 @@
+## v0.3.0 (2023-03-19)
+
+### Feat
+
+- **pre-commit**: add current library to pre-commit
+
+### Fix
+
+- **pre-commit**: add stages
+
 ## v0.2.1 (2023-03-19)
 
 ### Fix
