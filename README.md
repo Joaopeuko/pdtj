@@ -5,6 +5,8 @@
 
 # PDTJ - (Python Docstring To Json)
 
+## Introduction
+
 This project was created to solve a personal need for a flexible and simple tool to retrieve all
 Python docstrings and convert them into a JSON format. The tool's design provides flexibility to
 customize the parsing and documentation process, making it easy to navigate through the codebase's structure and
@@ -26,6 +28,41 @@ The project is designed to be flexible and customizable, enabling users to tailo
 and documentation process to their specific needs. With this tool, you can easily generate comprehensive
 documentation for your Python codebase and share it with others.
 
+# How to Use
+
+## Installation
+
+To install the tool, run the following command:
+```shell
+pip install pdtj
+```
+
+Next, create a ```.pdtj.yaml``` file in the root directory of your project and specify the following information:
+```shell
+name: <project name> # replace <project name> with your project's name
+shelve: <shelve name> # choose any name you like for <shelve name>
+sub-project: <sub-project name> # choose any name you like for <sub-project name>
+```
+
+
+## Generating the Documentation
+Once you have installed the tool and configured the ```.pdtj.yaml``` file, you can generate the documentation by running
+the following command:
+
+```shell
+pdtj
+```
+
+If everything is set up correctly, the tool will traverse your project directory, extract the docstrings from all Python
+files, and create a JSON file containing the documentation. The resulting file can be used to generate a
+documentation webpage or for any other purpose.
+
+
+
+# Features missing
+
+- [ ] Log
+- [ ] Unit tests
 
 # License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Joaopeuko/pdtj/blob/master/LICENSE) file for details.
