@@ -1,3 +1,8 @@
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pdtj)
+![PyPI](https://img.shields.io/pypi/v/pdtj)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/pdtj)
+![PyPI - License](https://img.shields.io/pypi/l/pdtj)
+
 # PDTJ - (Python Docstring To Json)
 
 This project was created to solve a personal need for a flexible and simple tool to retrieve all
@@ -23,4 +28,4 @@ documentation for your Python codebase and share it with others.
 
 
 # License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Joaopeuko/pdtj/blob/master/LICENSE) file for details.
