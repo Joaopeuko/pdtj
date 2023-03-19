@@ -2,7 +2,7 @@
 commitizen:
   name: cz_conventional_commits
   tag_format: v$major.$minor.$patch$prerelease
-  version: 0.2.1
+  version: 0.3.0
   version_files:
   - pdtj/__version__.py
   - setup.py
