@@ -33,6 +33,7 @@ repos:
   rev: v0.0.2
   hooks:
   - id: pdtj
+    args: []
 
 - repo: https://github.com/psf/black
   rev: 23.1.0
