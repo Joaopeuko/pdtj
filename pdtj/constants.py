@@ -20,5 +20,5 @@ REMOVE_ITEMS = [
     "__init__",
     "__pycache__",
     "__init__.py",
-    "__version__",
+    "__version__.py",
 ]
