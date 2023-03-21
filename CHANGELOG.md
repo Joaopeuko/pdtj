@@ -1,3 +1,9 @@
+## v0.3.4 (2023-03-21)
+
+### Fix
+
+- **base-exception**: add an except for base exception
+
 ## v0.3.3 (2023-03-21)
 
 ### Fix
