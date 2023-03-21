@@ -1,3 +1,9 @@
+## v0.3.5 (2023-03-21)
+
+### Fix
+
+- **json_generator**: update version file generation
+
 ## v0.3.4 (2023-03-21)
 
 ### Fix

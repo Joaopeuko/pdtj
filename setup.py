@@ -34,7 +34,7 @@ generate_requirements_txt(requirements)
 
 setuptools.setup(
     name="pdtj",
-    version="0.3.4",
+    version="0.3.5",
     license="MIT",
     author="Joao Paulo Euko",
     url="https://github.com/Joaopeuko/pdtj",
