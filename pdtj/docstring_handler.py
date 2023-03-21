@@ -16,20 +16,24 @@ def process_args(func: object) -> dict:
     Returns:
         A dictionary mapping each argument name to its type and default value (if any).
     """
-    argspec = inspect.getfullargspec(func)
-    defaults = argspec.defaults or []
-    defaults = list(reversed(defaults))
     args_with_types = {}
-    for index, args in enumerate(reversed(argspec.args)):
-        if args != "self":
-            if args in argspec.annotations.keys():
-                args_with_types[args + ":"] = {"type": argspec.annotations[args]}
-                if index < len(defaults):
-                    args_with_types[args + ":"]["default"] = defaults[index]
-                else:
-                    args_with_types[args + ":"]["default"] = "No default argument"
+    try:
+        argspec = inspect.getfullargspec(func)
+        defaults = argspec.defaults or []
+        defaults = list(reversed(defaults))
+        for index, args in enumerate(reversed(argspec.args)):
+            if args != "self":
+                if args in argspec.annotations.keys():
+                    args_with_types[args + ":"] = {"type": argspec.annotations[args]}
+                    if index < len(defaults):
+                        args_with_types[args + ":"]["default"] = defaults[index]
+                    else:
+                        args_with_types[args + ":"]["default"] = "No default argument"
 
-    return args_with_types
+        return args_with_types
+
+    except ValueError:
+        return args_with_types
 
 
 def update_args(pre_processed_dict: dict, args_pre_processed_dict: dict, arg_dict: dict) -> dict:
