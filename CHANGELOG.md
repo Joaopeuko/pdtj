@@ -1,3 +1,9 @@
+## v0.3.2 (2023-03-21)
+
+### Fix
+
+- **constants**: add __version__ to remove itens and change its location
+
 ## v0.3.1 (2023-03-21)
 
 ### Fix
