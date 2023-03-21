@@ -1,21 +1,8 @@
 import os
 from typing import List
 
+from pdtj.constants import REMOVE_ITEMS
 from pdtj.docstring_handler import docstring_file_parser
-
-REMOVE_ITEMS = [
-    "__builtins__",
-    "__cached__",
-    "__doc__",
-    "__file__",
-    "__loader__",
-    "__name__",
-    "__package__",
-    "__spec__",
-    "__init__",
-    "__pycache__",
-    "__init__.py",
-]
 
 
 def get_directory_type(possible_directory: str) -> str:
