@@ -1,8 +1,8 @@
 import argparse
+import importlib
 import json
 import os
 
-from pdtj import __version__
 from pdtj.files_finder import files_parser
 from pdtj.files_finder import get_directory_type
 from pdtj.parameters import parameters
@@ -12,9 +12,7 @@ from pdtj.util import create_docs_and_pdtj_dir
 def get_arguments():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument(
-        "--project_name", type=str, action="store", default=parameters["name"]
-    )
+    parser.add_argument("--project_name", type=str, action="store", default=parameters["name"])
 
     return vars(parser.parse_args())
 
@@ -29,11 +27,11 @@ def main():
     upper_file = project_name
     file_parser_result = files_parser(path, upper_file, directory_dict)
 
-    file_parser_result[project_name].update(
-        {"shelve": parameters["shelve"], "sub-project": parameters["sub-project"]}
-    )
+    file_parser_result[project_name].update({"shelve": parameters["shelve"], "sub-project": parameters["sub-project"]})
 
     path = os.path.join(os.getcwd(), "docs")
     path = os.path.join(path, "pdtj")
+
+    __version__ = importlib.import_module(f"{project_name}.__version__")
     with open(os.path.join(path, f"{__version__.version}.json"), "w") as file:
         file.write(json.dumps(str(file_parser_result)))
