@@ -1,3 +1,9 @@
+## v0.3.1 (2023-03-21)
+
+### Fix
+
+- **process_args**: add a try and except to filter baseexcepetion
+
 ## v0.3.0 (2023-03-19)
 
 ### Feat
