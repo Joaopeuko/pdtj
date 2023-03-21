@@ -35,6 +35,9 @@ def process_args(func: object) -> dict:
     except ValueError:
         return args_with_types
 
+    except TypeError:
+        return args_with_types
+
 
 def update_args(pre_processed_dict: dict, args_pre_processed_dict: dict, arg_dict: dict) -> dict:
     """
