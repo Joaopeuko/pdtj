@@ -44,6 +44,10 @@ shelve: <shelve name> # choose any name you like for <shelve name>
 sub-project: <sub-project name> # choose any name you like for <sub-project name>
 ```
 
+To use the library, you'll need to include a file named ```__version__.py``` in your app or project directory.
+This file will be used by the library to generate a JSON file with the version name.
+To ensure you have the necessary file and to view the generated output, you can check the ```pdtj/__version__py```
+and ```docs/pdtj``` directories.
 
 ## Generating the Documentation
 Once you have installed the tool and configured the ```.pdtj.yaml``` file, you can generate the documentation by running
